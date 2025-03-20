@@ -39,7 +39,7 @@ for _ in range(3):
         if user_answer.isdigit():
             user_answer = int(user_answer)
             if (user_answer < 5) and (user_answer > 0):
-                # Se veifica si la respuesta es correcta
+                # Se verifica si la respuesta es correcta
                 if (user_answer - 1) == correct_answers_index[question_index]:
                     print("¡Correcto!")
                     puntos += 1
@@ -53,14 +53,10 @@ for _ in range(3):
                     print ("Tu puntaje parcial es de: ", puntos)
             else:
                 print("Respuesta no válida.")
-                puntos -= 0.5
-                print ("Tu puntaje parcial es de: ", puntos)
                 sys.exit(1)
         else:
             print("Respuesta no válida.")
-            puntos -= 0.5
-            print ("Tu puntaje parcial es de: ", puntos)
             sys.exit(1)
     # Se imprime un blanco al final de la pregunta
-    print()
-    print ("Tu puntaje final es de: ", puntos)
+print()
+print ("Tu puntaje final es de: ", puntos)
