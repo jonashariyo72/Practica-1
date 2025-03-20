@@ -43,23 +43,24 @@ for _ in range(3):
                 if (user_answer - 1) == correct_answers_index[question_index]:
                     print("¡Correcto!")
                     puntos += 1
-                    print ("Tu puntaje es de: ", puntos)
+                    print ("Tu puntaje parcial es de: ", puntos)
                     break
                 else:
                     # Si el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
                     print("Incorrecto. La respuesta correcta es:")
                     print(answers[question_index] [correct_answers_index[question_index]])
                     puntos -= 0.5
-                    print ("Tu puntaje es de: ", puntos)
+                    print ("Tu puntaje parcial es de: ", puntos)
             else:
                 print("Respuesta no válida.")
                 puntos -= 0.5
-                print ("Tu puntaje es de: ", puntos)
+                print ("Tu puntaje parcial es de: ", puntos)
                 sys.exit(1)
         else:
             print("Respuesta no válida.")
             puntos -= 0.5
-            print ("Tu puntaje es de: ", puntos)
+            print ("Tu puntaje parcial es de: ", puntos)
             sys.exit(1)
     # Se imprime un blanco al final de la pregunta
     print()
+    print ("Tu puntaje final es de: ", puntos)
