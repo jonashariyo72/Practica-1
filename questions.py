@@ -23,40 +23,45 @@ answers = [
 ]
 # Índice de la respuesta correcta para cada pregunta, el el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
+
+questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3) # Modifico el "choices" por el "sample" para que no se repitan las preguntas
 puntos = 0 #Para sumar los  puntos
 # El usuario deberá contestar 3 preguntas
-for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_index = random.randint(0, len(questions) - 1)
+for ques, ans, corrans in questions_to_ask:
     # Se muestra la pregunta y las respuestas posibles
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]):
+    print(ques)
+    for i, answer in enumerate(ans):
         print(f"{i + 1}. {answer}")
+    cont = 0 #Cuento intentos
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
+        cont += 1
         user_answer = input("Respuesta: ")
         # Se verifica si la respuesta es válida
         if user_answer.isdigit():
             user_answer = int(user_answer)
             if (user_answer < 5) and (user_answer > 0):
                 # Se verifica si la respuesta es correcta
-                if (user_answer - 1) == correct_answers_index[question_index]:
+                if (user_answer - 1) == corrans:
                     print("¡Correcto!")
                     puntos += 1
                     print ("Tu puntaje parcial es de: ", puntos)
                     break
                 else:
-                    # Si el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
-                    print("Incorrecto. La respuesta correcta es:")
-                    print(answers[question_index] [correct_answers_index[question_index]])
-                    puntos -= 0.5
-                    print ("Tu puntaje parcial es de: ", puntos)
+                # Si el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
+                    if cont == 1:
+                        puntos -= 0.5
             else:
                 print("Respuesta no válida.")
                 sys.exit(1)
         else:
             print("Respuesta no válida.")
             sys.exit(1)
+    else:   
+        print("Incorrecto. La respuesta correcta es:")
+        print(corrans + 1)
+        puntos -= 0.5
+        print ("Tu puntaje parcial es de: ", puntos)
     # Se imprime un blanco al final de la pregunta
 print()
 print ("Tu puntaje final es de: ", puntos)
